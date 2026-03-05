@@ -22,14 +22,20 @@ test.describe('การส่งข้อมูลสำเร็จ (Positive 
     await page.locator('.react-datepicker__day--001').first().click({ force: true });
 
     // กด Enter
+    // วิชาที่สนใจ (Subjects) - ปราบความ Flaky ของ React-Select
     const subjectsInput = page.locator('#subjectsInput');
+
+    // วิชา Maths
     await subjectsInput.click({ force: true });
     await subjectsInput.pressSequentially('Maths', { delay: 100 });
-    await subjectsInput.press('Enter');
-    
+    await page.waitForTimeout(500);
+    await page.keyboard.press('Enter');
+
+    // วิชา Physics
     await subjectsInput.click({ force: true });
     await subjectsInput.pressSequentially('Physics', { delay: 100 });
-    await subjectsInput.press('Enter');
+    await page.waitForTimeout(500);
+    await page.keyboard.press('Enter');
 
     await page.getByText('Sports', { exact: true }).click({ force: true });
     await page.getByText('Reading', { exact: true }).click({ force: true });
