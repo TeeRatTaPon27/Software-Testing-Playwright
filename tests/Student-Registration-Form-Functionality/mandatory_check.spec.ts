@@ -4,14 +4,19 @@ test.describe('การตรวจสอบฟิลด์บังคับ (
 
   test.beforeEach(async ({ page }) => {
     await page.goto(process.env.BASE_URL as string, { waitUntil: 'domcontentloaded' });
-    await page.addStyleTag({ content: '#fixedban, footer { display: none !important; }' });
   });
 
   test('TC-MAN-01: ไม่สามารถส่งฟอร์มได้หากเว้นว่างทุกฟิลด์', async ({ page }) => {
     await page.locator('#submit').click({ force: true });
     await expect(page.locator('.modal-content')).not.toBeVisible();
-    const isFirstNameValid = await page.locator('#firstName').evaluate((el: HTMLInputElement) => el.validity.valid);
-    expect(isFirstNameValid).toBe(false);
+    
+    const requiredInputs = ['#firstName', '#lastName', '#userNumber'];
+    for (const inputId of requiredInputs) {
+      const isValid = await page.locator(inputId).evaluate((el: HTMLInputElement) => el.validity.valid);
+      expect(isValid).toBe(false);
+    }
+
+    await expect(page.locator('#userForm')).toHaveClass(/was-validated/);
   });
 
   test('TC-MAN-02: ไม่สามารถส่งฟอร์มได้หากขาด First Name', async ({ page }) => {

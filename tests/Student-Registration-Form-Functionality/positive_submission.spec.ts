@@ -40,6 +40,7 @@ test.describe('การส่งข้อมูลสำเร็จ (Positive 
     await page.getByText('Sports', { exact: true }).click({ force: true });
     await page.getByText('Reading', { exact: true }).click({ force: true });
 
+    // จำลองการใส่ไฟล์ .png
     await page.locator('#uploadPicture').setInputFiles({
       name: 'profile.png',
       mimeType: 'image/png',
