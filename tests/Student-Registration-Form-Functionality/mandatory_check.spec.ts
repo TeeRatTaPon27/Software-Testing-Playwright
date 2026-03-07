@@ -16,6 +16,7 @@ test.describe('การตรวจสอบฟิลด์บังคับ (
       expect(isValid).toBe(false);
     }
 
+    // เป็น Class เสริมจาก Bootstrap เวลากด summit จะมีการแปะ was-validated เข้า class เพื่อดูว่าส่งหรือยัง
     await expect(page.locator('#userForm')).toHaveClass(/was-validated/);
   });
 
