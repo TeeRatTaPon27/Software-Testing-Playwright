@@ -5,7 +5,6 @@ test.describe('การส่งข้อมูลสำเร็จ (Positive 
   test.beforeEach(async ({ page }) => {
     // โหลดแค่ DOM และฉีด CSS ลบโฆษณา/Footer ทิ้ง
     await page.goto(process.env.BASE_URL as string, { waitUntil: 'domcontentloaded' });
-    await page.addStyleTag({ content: '#fixedban, footer { display: none !important; }' });
   });
 
   test('TC-POS-01: สามารถส่งฟอร์มและแสดง Modal สรุปข้อมูลได้เมื่อกรอกข้อมูลถูกต้องครบถ้วน', async ({ page }) => {
