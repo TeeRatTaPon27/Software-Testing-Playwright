@@ -3,7 +3,6 @@ import { test, expect } from '@playwright/test';
 test.describe('การส่งข้อมูลสำเร็จ (Positive Submission - Happy Path)', () => {
 
   test.beforeEach(async ({ page }) => {
-    // โหลดแค่ DOM และฉีด CSS ลบโฆษณา/Footer ทิ้ง
     await page.goto(process.env.BASE_URL as string, { waitUntil: 'domcontentloaded' });
   });
 
